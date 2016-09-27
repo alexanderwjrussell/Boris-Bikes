@@ -11,4 +11,7 @@ describe DockingStation do
     expect(bike.working?).to eq(true)
   end
 
+  it "docks returned bike" do
+    expect(subject).to respond_to(:dock).with(1).argument
+  end
 end
