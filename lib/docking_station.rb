@@ -10,7 +10,7 @@ class DockingStation
   #attr_reader :bike #Use method #bike to check bike docked at station
 
   def bike
-    @bike_array.pop #shows all bikes at the station
+    @bike_array.last #shows all bikes at the station
   end
 
   def release_bike
