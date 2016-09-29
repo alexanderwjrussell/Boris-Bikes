@@ -12,6 +12,7 @@ class DockingStation
 
   def release_bike
     fail "error - no bikes available" if empty?
+    fail "Bike is broken" if array.pop.broken
     array.pop
   end
 
