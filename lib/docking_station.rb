@@ -1,3 +1,5 @@
+require './lib/bike'
+
 class DockingStation
   attr_reader :bike
   attr_accessor :capacity

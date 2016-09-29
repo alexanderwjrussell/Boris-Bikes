@@ -4,11 +4,6 @@ require 'spec_helper'
 
    it { is_expected.to respond_to :release_bike}
 
-   it "should get a working bike" do
-     bike = Bike.new
-     expect(bike).to be_working
-   end
-
     it { is_expected.to respond_to(:bike) }
 
     it { is_expected.to respond_to(:dock).with(1).argument }
