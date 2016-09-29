@@ -3,8 +3,20 @@ require 'bike'
 
 describe DockingStation do
 
-  it 'check default capacity' do
-    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  describe 'initialization' do
+    subject { DockingStation.new }
+    let(:bike) { Bike.new }
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times do
+        subject.dock(bike)
+      end
+      expect { subject.dock(bike) }.to raise_error 'Docking station at capacity'
+    end
+    it 'has a variable capacity' do
+      station = DockingStation.new(42)
+      42.times { station.dock Bike.new }
+      expect{ station.dock(bike) }.to raise_error 'Docking station at capacity'
+    end
   end
 
   it 'checks manual capacity insert' do
@@ -16,7 +28,7 @@ describe DockingStation do
     bike = Bike.new
     station = DockingStation.new
     station.dock(bike)
-    expect(station.bike).to eq [bike]
+    expect(station.bikes).to eq [bike]
   end
 
   it { is_expected.to respond_to :release_bike }
@@ -27,7 +39,7 @@ describe DockingStation do
     expect(bike).to be_working
   end
 
-  it { is_expected.to respond_to(:bike) }
+  it { is_expected.to respond_to(:bikes) }
 
   describe '#release_bike' do
     it 'returns error when no bike available' do
