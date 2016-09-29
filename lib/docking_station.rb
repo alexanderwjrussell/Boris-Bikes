@@ -16,6 +16,12 @@ class DockingStation
     array.pop
   end
 
+  def release_broken_bike
+    fail "error - no bikes available" if empty?
+    fail "Bike is not broken" unless array.pop.broken
+    array.pop
+  end
+
   def dock(bike)
     fail "error - docking station has exceeded capacity" if full?
     array << bike

@@ -52,5 +52,11 @@ require 'spec_helper'
       end
     end
 
-
+    describe '#release_broken_bike' do
+      it "should only release broken bikes to the van" do
+      bike = double(:bike, broken: false)
+      subject.dock(bike)
+      expect {subject.release_broken_bike}.to raise_error("Bike is not broken")
+      end
+    end
   end
