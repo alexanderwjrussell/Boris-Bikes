@@ -3,16 +3,17 @@
 class DockingStation
 
   # attr_reader :bike #Use method #bike to check bike docked at station
+  DEFAULT_CAPACITY = 20
+  attr_reader :capacity
 
   def bike
     @bikes
   end
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @bikes = []
+    @capacity = capacity
   end
-  
-  DEFAULT_CAPACITY = 20
 
   def release_bike
     fail 'No bikes available' if empty?

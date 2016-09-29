@@ -3,6 +3,15 @@ require 'bike'
 
 describe DockingStation do
 
+  it 'check default capacity' do
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
+
+  it 'checks manual capacity insert' do
+    station = DockingStation.new(42)
+    expect(station.capacity).to eq 42
+  end
+
   it 'returns docked bikes' do
     bike = Bike.new
     station = DockingStation.new
