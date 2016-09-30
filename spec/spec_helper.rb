@@ -1,5 +1,6 @@
 require 'docking_station'
 require 'bike'
+require 'van'
 
 RSpec.configure do |config|
   # Use color in STDOUT

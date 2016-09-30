@@ -17,12 +17,6 @@ describe DockingStation do
     end
   end
 
-  it 'collects broken bikes' do
-    bike = double(:bike, broken?: true)
-    subject.dock(bike)
-    expect(subject.collect_broken).to eq bike
-  end
-
   it 'checks manual capacity insert' do
     station = DockingStation.new(42)
     expect(station.capacity).to eq 42
@@ -49,6 +43,13 @@ describe DockingStation do
     broken_bike.report_broken
     subject.dock(broken_bike)
     expect { subject.release_bike }.to raise_error 'This bike is broken'
+  end
+
+  it 'releases broken bikes' do
+    broken_bike = double(:bike, report_broken: :broken, broken?: true)
+    broken_bike.report_broken
+    subject.dock(broken_bike)
+    expect(subject.release_broken_bikes).to eq []
   end
 
   # it { is_expected.to respond_to(:bike) }

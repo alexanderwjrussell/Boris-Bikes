@@ -1,14 +1,17 @@
 require './lib/bike'
+require './lib/van'
 
 class DockingStation
 
   # attr_reader :bike #Use method #bike to check bike docked at station
   DEFAULT_CAPACITY = 20
   attr_reader :capacity
+  attr_accessor :van_bikes
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @bikes = []
     @capacity = capacity
+    @broken_bikes = []
   end
 
   def release_bike
@@ -23,8 +26,17 @@ class DockingStation
    @bikes << bike
   end
 
-  def collect_broken
-    @bikes.pop
+  def release_broken_bikes
+    n = 0
+    @bikes.each do |bike|
+      if bike.broken?
+        @broken_bikes << @bikes[n]
+        @bikes.delete_at(n)
+      else
+        n+=1
+      end
+      # bike.broken? ? @broken_bikes << @bikes.pop : nil
+    end
   end
 
   private
