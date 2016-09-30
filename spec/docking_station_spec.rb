@@ -1,5 +1,4 @@
-require 'docking_station'
-require 'bike'
+require 'spec_helper'
 
 describe DockingStation do
 
@@ -28,7 +27,7 @@ describe DockingStation do
     bike = Bike.new
     station = DockingStation.new
     station.dock(bike)
-    expect(station.bikes).to eq [bike]
+    expect(station.release_bike).to eq (bike)
   end
 
   it { is_expected.to respond_to :release_bike }
@@ -46,7 +45,7 @@ describe DockingStation do
     expect { subject.release_bike }.to raise_error 'This bike is broken'
   end
 
-  it { is_expected.to respond_to(:bikes) }
+  # it { is_expected.to respond_to(:bike) }
 
   describe '#release_bike' do
     it 'returns error when no bike available' do
