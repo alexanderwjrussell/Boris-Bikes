@@ -23,6 +23,10 @@ class DockingStation
    @bikes << bike
   end
 
+  def collect_broken
+    @bikes.pop
+  end
+
   private
 
   attr_reader :bikes

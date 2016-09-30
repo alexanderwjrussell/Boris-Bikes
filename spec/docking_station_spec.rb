@@ -3,7 +3,6 @@ require 'spec_helper'
 describe DockingStation do
 
   describe 'initialization' do
-    subject { DockingStation.new }
     let(:bike) { double(:bike) }
     it 'defaults capacity' do
       described_class::DEFAULT_CAPACITY.times do
@@ -16,6 +15,12 @@ describe DockingStation do
       42.times { station.dock(bike) }
       expect{ station.dock(bike) }.to raise_error 'Docking station at capacity'
     end
+  end
+
+  it 'collects broken bikes' do
+    bike = double(:bike, broken?: true)
+    subject.dock(bike)
+    expect(subject.collect_broken).to eq bike
   end
 
   it 'checks manual capacity insert' do
