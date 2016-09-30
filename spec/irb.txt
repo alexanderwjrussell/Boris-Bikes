@@ -1,0 +1,19 @@
+require './lib/bike_container.rb'
+require './lib/docking_station.rb'
+require './lib/bike.rb'
+require './lib/van.rb'
+require './lib/garage.rb'
+station = DockingStation.new
+garage = Garage.new
+van = Van.new
+working_bike1 = Bike.new
+working_bike2 = Bike.new
+broken_bike1 = Bike.new
+broken_bike1.report_broken
+broken_bike2 = Bike.new
+broken_bike2.report_broken
+station.dock(working_bike1)
+station.dock(working_bike2)
+station.dock(broken_bike1)
+station.dock(broken_bike2)
+ 

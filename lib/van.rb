@@ -7,8 +7,8 @@ class Van
     @van_bikes = []
   end
 
-  def collect_broken(dockin_station)
-
+  def collect_broken(broken_bikes)
+      @van_bikes = broken_bikes.pop
   end
 
 end
